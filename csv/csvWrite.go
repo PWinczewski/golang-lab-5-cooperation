@@ -7,7 +7,7 @@ import (
 	"github.com/gocarina/gocsv"
 )
 
-// Define a struct to represent your data
+// Definiujemy strukturę danych, które chcemy zapisać do pliku CSV
 type Record struct {
 	Name  string `csv:"Name"`
 	Age   int    `csv:"Age"`
@@ -15,21 +15,21 @@ type Record struct {
 }
 
 func main() {
-	// Create some sample data
+	// Przykładowe dane
 	records := []*Record{
 		{Name: "John Doe", Age: 30, Email: "john@example.com"},
 		{Name: "Jane Smith", Age: 25, Email: "jane@example.com"},
 		{Name: "Bob Johnson", Age: 35, Email: "bob@example.com"},
 	}
 
-	// Open a CSV file for writing
+	// Otwieramy plik CSV do zapisu
 	file, err := os.Create("output.csv")
 	if err != nil {
 		log.Fatalf("error creating CSV file: %s", err)
 	}
 	defer file.Close()
 
-	// Write records to the CSV file
+	// Zapisujemy dane do pliku
 	err = gocsv.MarshalFile(&records, file)
 	if err != nil {
 		log.Fatalf("error writing CSV data: %s", err)
